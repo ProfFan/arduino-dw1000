@@ -556,7 +556,7 @@ public:
 	static const byte PLL_CLOCK  = 0x02;
 	
 	/* SPI configs. */
-	static const SPISettings _fastSPI;
+	static SPISettings _fastSPI;
 	static const SPISettings _slowSPI;
 	static const SPISettings* _currentSPI;
 	
