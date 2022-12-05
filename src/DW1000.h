@@ -561,7 +561,7 @@ public:
 	static const SPISettings* _currentSPI;
 
 	/* SPI Bus */
-	static SPIClass* bus = &SPI;
+	static SPIClass* bus;
 	
 	/* range bias tables (500/900 MHz band, 16/64 MHz PRF), -61 to -95 dBm. */
 	static const byte BIAS_500_16_ZERO = 10;

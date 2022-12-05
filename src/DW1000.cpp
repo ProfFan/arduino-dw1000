@@ -107,6 +107,7 @@ const byte DW1000Class::BIAS_900_64[] = {147, 133, 117, 99, 75, 50, 29, 0, 24, 4
 #endif
 const SPISettings DW1000Class::_slowSPI = SPISettings(2000000L, MSBFIRST, SPI_MODE0);
 const SPISettings* DW1000Class::_currentSPI = &_fastSPI;
+SPIClass* DW1000Class::bus = &SPI;
 
 /* ###########################################################################
  * #### Init and end #######################################################
@@ -169,7 +170,7 @@ void DW1000Class::begin(uint8_t irq, uint8_t rst) {
     	pinMode(irq, INPUT);
 	// start SPI
 	bus->begin();
-#ifndef ESP8266
+#if !(defined(ESP8266) || defined(ESP32))
 	bus->usingInterrupt(digitalPinToInterrupt(irq)); // not every board support this, e.g. ESP8266
 #endif
 	// pin and basic member setup
