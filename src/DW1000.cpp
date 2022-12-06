@@ -180,7 +180,9 @@ void DW1000Class::begin(uint8_t irq, uint8_t rst) {
 	// attach interrupt
 	//attachInterrupt(_irq, DW1000Class::handleInterrupt, CHANGE); // todo interrupt for ESP8266
 	// TODO throw error if pin is not a interrupt pin
-	attachInterrupt(digitalPinToInterrupt(_irq), DW1000Class::handleInterrupt, RISING); // todo interrupt for ESP8266
+	
+	// NOTE(fan): this ISR takes way too much stack space, so we move this to a process and manually bind the ISR!
+	// attachInterrupt(digitalPinToInterrupt(_irq), DW1000Class::handleInterrupt, RISING); // todo interrupt for ESP8266
 }
 
 void DW1000Class::manageLDE() {
